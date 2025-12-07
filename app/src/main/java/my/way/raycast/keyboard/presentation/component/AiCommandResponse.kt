@@ -19,8 +19,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.CompositingStrategy
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
@@ -117,8 +123,43 @@ fun AICommandResponse(
             }
         }
         Box(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .weight(1f)
+                .graphicsLayer {
+                    compositingStrategy = CompositingStrategy.Offscreen
+                }
+                .drawWithContent {
+                    drawContent()
+
+                    val feather = 23.dp.toPx()
+
+                    // Top fade
+                    drawRect(
+                        topLeft = Offset(0f, 0f),
+                        size = Size(size.width, feather),
+                        brush = Brush.verticalGradient(
+                            colors = listOf(Color.Transparent, Color.Black,),
+                            startY = 0f,
+                            endY = feather
+                        ),
+                        blendMode = BlendMode.DstIn
+                    )
+
+                    // Bottom fade
+                    drawRect(
+                        topLeft = Offset(0f, size.height - feather),
+                        size = Size(size.width, feather),
+                        brush = Brush.verticalGradient(
+                            0f to Color.Black,
+                            1f to Color.Transparent,
+                            startY = size.height - feather,
+                            endY = size.height
+                        ),
+                        blendMode = BlendMode.DstIn
+                    )
+                }
         ) {
+            // scrolling content must be inside this Box
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -131,34 +172,10 @@ fun AICommandResponse(
                     fontFamily = InterFontFamily.Medium,
                     color = RaycastTheme.colorScheme.labelPrimary,
                 )
+                Spacer(Modifier.size(48.dp))
             }
-
-            Spacer(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(16.dp)
-                    .align(Alignment.TopCenter)
-                    .background(
-                        brush = Brush.verticalGradient(
-                            0.0f to RaycastTheme.colorScheme.gray5,
-                            1.0f to RaycastTheme.colorScheme.gray5.copy(alpha = 0f),
-                        )
-                    )
-            )
-
-            Spacer(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(32.dp)
-                    .align(Alignment.BottomCenter)
-                    .background(
-                        brush = Brush.verticalGradient(
-                            0.0f to RaycastTheme.colorScheme.gray5.copy(alpha = 0f),
-                            1.0f to RaycastTheme.colorScheme.gray5,
-                        )
-                    )
-            )
         }
+
 
 
         Row(
