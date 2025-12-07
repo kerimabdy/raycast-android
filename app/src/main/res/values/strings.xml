@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Raycast</string>
+    <string name="subtype_en_us">Subtype en-us</string>
+    <string name="error_request_timeout">Request timeout</string>
+    <string name="error_too_many_requests">Too many requests</string>
+    <string name="error_no_internet">No internet</string>
+    <string name="error_serialization">Serialization error</string>
+    <string name="error_unknown">Unknown error</string>
 </resources>
