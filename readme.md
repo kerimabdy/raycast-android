@@ -4,8 +4,10 @@ Android adaptation of the popular macOS and iOS app [Raycast](https://www.raycas
 
 ## Features
 
-- Launcher for AI commands, snippets, quick links, apps, and contacts to take action with them.
-- Keyboard for editing text with quick links, snippets, and AI commands.
+|                                      Launcher                                       |                           Keyboard                            |
+|:-----------------------------------------------------------------------------------:|:-------------------------------------------------------------:|
+|                     ![Launcher screenshot](assets/launcher.jpg)                     |          ![Keyboard screenshot](assets/keyboard.jpg)          |
+| For AI commands, snippets, quick links, apps, and contacts to take action with them | For editing text with quick links, snippets, and AI commands. |
 
 ## Motivation
 Job application project for Raycast. As a devoted Raycast user on macOS, I want to join the team to help bring Raycast power to Android.
