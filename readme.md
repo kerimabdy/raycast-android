@@ -2,6 +2,9 @@
 
 Android adaptation of the popular macOS and iOS app [Raycast](https://www.raycast.com/)
 
+https://github.com/user-attachments/assets/012c32fd-fe95-4dd3-9cc5-4bc9d7b1e85c
+
+
 ## Features
 
 |                                      Launcher                                       |                           Keyboard                            |
